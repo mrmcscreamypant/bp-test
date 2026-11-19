@@ -13,10 +13,10 @@
         const pod = await BrowserPod.boot();
 
         const terminal = await pod.createDefaultTerminal(
-            document.getElementById("console")
+            document.querySelector("#console")
         );
 
-        await pod.run("bash", { terminal });
+       await pod.run("bash", { terminal });
     </script>
 </head>
 
