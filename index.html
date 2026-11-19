@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="origin-trial" content="{token}">
+
+    <script type="module">
+        import { BrowserPod } from 'https://cdn.jsdelivr.net/npm/@leaningtech/browserpod/+esm';
+
+        const pod = await BrowserPod.boot();
+
+        const terminal = await pod.createDefaultTerminal(
+            document.getElementById("console")
+        );
+
+        await pod.run("bash", { terminal });
+    </script>
+</head>
+
+<body>
+    <div id="terminal"></div>
+</body>
+
+</html>
