@@ -19,7 +19,7 @@
                     const decoder = new TextDecoder("utf-8");
 
                     const string = decoder.decode(Uint8Array.from(buffer));
-                    if (!vt) { vt = "JS" } console.log(`[${vt}] ${string}`);
+                    if (vt === undefined) { vt = "JS" } console.log(`[${vt}] ${string}`);
                     elem.innerHTML += string;
                 }
             });
