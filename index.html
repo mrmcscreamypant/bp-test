@@ -17,7 +17,7 @@
             const terminal = await pod.createCustomTerminal({
                 onOutput: (buffer, vt) => {
                     const decoder = new TextDecoder("utf-8");
-                    const string = decoder.decode(buffer);
+                    const string = decoder.decode(new Uint8Array().fromHex(buffer.toHex()));
                     console.log(`[${vt}] ${string}`);
                     elem.innerHTML += string;
                 }
