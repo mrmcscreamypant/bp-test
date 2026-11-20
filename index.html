@@ -16,8 +16,8 @@
             console.appendChild(elem);
             const terminal = await pod.createCustomTerminal({
                 onOutput: (buffer) => {
-                    const decoder = new TextDecoder();
-                    elem.innerHTML += decoder.decode(buffer);
+                    const decoder = new TextDecoder("utf-8", { fatal: false });
+                    elem.innerHTML += decoder.decode(buffer.transfer());
                 }
             });
             terminal.write(`> ${cmd} ${args}\n`);
