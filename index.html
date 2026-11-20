@@ -10,18 +10,22 @@
     <script type="module">
         import { BrowserPod } from 'https://cdn.jsdelivr.net/npm/@leaningtech/browserpod/+esm';
 
+        async function spawnTask(cmd, args) {
+            const elem = document.createElement("div");
+            document.querySelector("#console").appendChild(elem);
+            const terminal = await pod.createDefaultTerminal(elem);
+            terminal.write(`> ${cmd} ${args})`);
+            await pod.run(cmd, args, { terminal });
+        }
+
         const network = await BrowserPod.createFetchNetwork({
             fetch: BrowserPod.opinionatedFetch,
         });
 
         const pod = await BrowserPod.boot({ network });
 
-        const terminal = await pod.createDefaultTerminal(
-            document.querySelector("#console")
-        );
-
-        terminal.write("> pnpm init");
-        await pod.run("pnpm", ["init"], { terminal });
+        spawnTask("echo", ["Hello, World"]);
+        await spawnTask("pnpm", ["init"]);
     </script>
 </head>
 
