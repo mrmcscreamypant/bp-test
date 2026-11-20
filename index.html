@@ -11,9 +11,9 @@
         import { BrowserPod } from 'https://cdn.jsdelivr.net/npm/@leaningtech/browserpod/+esm';
 
         async function spawnTask(cmd, args) {
+            const console = document.querySelector("#console");
             const elem = document.createElement("div");
             elem.className = "term";
-            const console = document.querySelector("#console");
             console.appendChild(elem);
             const terminal = await pod.createDefaultTerminal(elem);
             terminal.write(`> ${cmd} ${args}\n`);
