@@ -9,6 +9,8 @@
 
     <script type="module">
         import { BrowserPod } from 'https://cdn.jsdelivr.net/npm/@leaningtech/browserpod/+esm';
+        import * as webllm from "https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm/+esm";
+
         async function spawnTask(cmd, args) {
             const con = document.querySelector("#console");
             const elem = document.createElement("pre");
@@ -54,7 +56,6 @@
 
 <body>
     <div id="console">
-        <div class="term">foo</div>
     </div>
 </body>
 
