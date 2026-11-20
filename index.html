@@ -9,9 +9,6 @@
 
     <script type="module">
         import { BrowserPod } from 'https://cdn.jsdelivr.net/npm/@leaningtech/browserpod/+esm';
-
-        const decoder = new TextDecoder();
-
         async function spawnTask(cmd, args) {
             const console = document.querySelector("#console");
             const elem = document.createElement("pre");
@@ -19,6 +16,7 @@
             console.appendChild(elem);
             const terminal = await pod.createCustomTerminal({
                 onOutput: (buffer) => {
+                    const decoder = new TextDecoder();
                     elem.innerHTML += decoder.decode(buffer);
                 }
             });
