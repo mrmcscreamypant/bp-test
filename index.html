@@ -12,7 +12,8 @@
 
         async function spawnTask(cmd, args) {
             const elem = document.createElement("div");
-            const console = document.querySelector("#console")
+            elem.className = "term";
+            const console = document.querySelector("#console");
             console.appendChild(elem);
             const terminal = await pod.createDefaultTerminal(elem);
             terminal.write(`> ${cmd} ${args}\n`);
@@ -30,6 +31,17 @@
         spawnTask("echo", ["Hello, World"]);
         await spawnTask("pnpm", ["init"]);
     </script>
+
+    <style>
+        #console {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .term {
+            margin: 5px;
+        }
+    </style>
 </head>
 
 <body>
