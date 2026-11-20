@@ -24,7 +24,7 @@
 
         const pod = await BrowserPod.boot({ network });
 
-        spawnTask("echo", ["Hello, World"]);
+        await spawnTask("echo", ["Hello, World"]);
         await spawnTask("pnpm", ["init"]);
     </script>
 </head>
