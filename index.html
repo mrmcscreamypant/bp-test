@@ -16,7 +16,7 @@
             document.querySelector("#console")
         );
 
-        await pod.run("bash", [], { terminal });
+        await pod.run("git", ["clone", "--depth", "1", "--branch", "main", "https://github.com/1kgd/sb.git"], { terminal });
     </script>
 </head>
 
