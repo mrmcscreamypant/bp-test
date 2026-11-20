@@ -15,9 +15,11 @@
             elem.className = "term";
             console.appendChild(elem);
             const terminal = await pod.createCustomTerminal({
-                onOutput: (buffer) => {
-                    const decoder = new TextDecoder("utf-8", { fatal: false });
-                    elem.innerHTML += decoder.decode(buffer.transfer());
+                onOutput: (buffer, vt) => {
+                    const decoder = new TextDecoder("utf-8");
+                    const string = decoder.decode(buffer);
+                    console.log(`[${vt}] string)`);
+                    elem.innerHTML += string;
                 }
             });
             terminal.write(`> ${cmd} ${args}\n`);
