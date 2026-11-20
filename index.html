@@ -10,7 +10,13 @@
     <script type="module">
         import { BrowserPod } from 'https://cdn.jsdelivr.net/npm/@leaningtech/browserpod/+esm';
 
-        const pod = await BrowserPod.boot();
+        const network = await BrowserPod.createFetchNetwork({
+            fetch(url, init) {
+                return BrowserPod.opinionatedFetch(url, init);
+            },
+        });
+
+        const pod = await BrowserPod.boot({ network });
 
         const terminal = await pod.createDefaultTerminal(
             document.querySelector("#console")
