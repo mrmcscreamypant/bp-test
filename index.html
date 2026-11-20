@@ -20,7 +20,8 @@
             document.querySelector("#console")
         );
 
-        await pod.run("git", ["clone", "--depth", "1", "--branch", "master", "https://github.com/1kgd/sb.git"], { terminal });
+        terminal.write("> npm init");
+        await pod.run(["npm", "init"], { terminal });
     </script>
 </head>
 
