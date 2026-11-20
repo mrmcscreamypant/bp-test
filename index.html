@@ -15,7 +15,7 @@
             const elem = document.createElement("pre");
             elem.className = "term";
             console.appendChild(elem);
-            const terminal = await pod.createCustomTermnial({
+            const terminal = await pod.createCustomTerminal({
                 onOutput: (buffer) => {
                     elem.innerHTML += buffer;
                 }
