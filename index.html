@@ -12,10 +12,13 @@
 
         async function spawnTask(cmd, args) {
             const elem = document.createElement("div");
-            document.querySelector("#console").appendChild(elem);
+            const console = document.querySelector("#console")
+            console.appendChild(elem);
             const terminal = await pod.createDefaultTerminal(elem);
             terminal.write(`> ${cmd} ${args}\n`);
             await pod.run(cmd, args, { terminal });
+            terminal.write("> DONE... REMOVING IN 5 SEC");
+            setTimeout(() => console.removeChild(elem), 5000);
         }
 
         const network = await BrowserPod.createFetchNetwork({
@@ -24,7 +27,7 @@
 
         const pod = await BrowserPod.boot({ network });
 
-        await spawnTask("echo", ["Hello, World"]);
+        spawnTask("echo", ["Hello, World"]);
         await spawnTask("pnpm", ["init"]);
     </script>
 </head>
