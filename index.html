@@ -12,10 +12,14 @@
 
         async function spawnTask(cmd, args) {
             const console = document.querySelector("#console");
-            const elem = document.createElement("div");
+            const elem = document.createElement("pre");
             elem.className = "term";
             console.appendChild(elem);
-            const terminal = await pod.createDefaultTerminal(elem);
+            const terminal = await pod.createCustomTermnial({
+                onOutput: (buffer) => {
+                    elem.innerHTML += buffer;
+                }
+            });
             terminal.write(`> ${cmd} ${args}\n`);
             await pod.run(cmd, args, { terminal });
             terminal.write("> DONE... REMOVING IN 5 SEC");
