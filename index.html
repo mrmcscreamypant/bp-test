@@ -11,9 +11,7 @@
         import { BrowserPod } from 'https://cdn.jsdelivr.net/npm/@leaningtech/browserpod/+esm';
 
         const network = await BrowserPod.createFetchNetwork({
-            fetch(url, init) {
-                return BrowserPod.opinionatedFetch(url, init);
-            },
+            fetch: BrowserPod.opinionatedFetch,
         });
 
         const pod = await BrowserPod.boot({ network });
