@@ -10,6 +10,8 @@
     <script type="module">
         import { BrowserPod } from 'https://cdn.jsdelivr.net/npm/@leaningtech/browserpod/+esm';
 
+        const decoder = new TextDecoder();
+
         async function spawnTask(cmd, args) {
             const console = document.querySelector("#console");
             const elem = document.createElement("pre");
@@ -17,7 +19,7 @@
             console.appendChild(elem);
             const terminal = await pod.createCustomTerminal({
                 onOutput: (buffer) => {
-                    elem.innerHTML += new TextDecoder().decode(duffer);
+                    elem.innerHTML += decoder.decode(buffer);
                 }
             });
             terminal.write(`> ${cmd} ${args}\n`);
