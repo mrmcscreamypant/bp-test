@@ -10,10 +10,10 @@
     <script type="module">
         import { BrowserPod } from 'https://cdn.jsdelivr.net/npm/@leaningtech/browserpod/+esm';
         async function spawnTask(cmd, args) {
-            const console = document.querySelector("#console");
+            const con = document.querySelector("#console");
             const elem = document.createElement("pre");
             elem.className = "term";
-            console.appendChild(elem);
+            con.appendChild(elem);
             const terminal = await pod.createCustomTerminal({
                 onOutput: (buffer, vt) => {
                     const decoder = new TextDecoder("utf-8");
@@ -25,7 +25,7 @@
             terminal.write(`> ${cmd} ${args}\n`);
             await pod.run(cmd, args, { terminal });
             terminal.write("> DONE... REMOVING IN 5 SEC");
-            setTimeout(() => console.removeChild(elem), 5000);
+            setTimeout(() => con.removeChild(elem), 5000);
         }
 
         const network = await BrowserPod.createFetchNetwork({
